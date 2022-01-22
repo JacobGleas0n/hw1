@@ -105,7 +105,7 @@ INSERT INTO movies (
     title,
     release_date,
     rating,
-    director,
+    director
 )
 
 VALUES (
