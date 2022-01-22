@@ -69,12 +69,194 @@
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
 
+DROP TABLE IF EXISTS movies;
+DROP TABLE IF EXISTS cast;
+
 -- Create new tables, according to your domain model
 -- TODO!
+
+CREATE TABLE movies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT,
+    release_date TEXT,
+    rating TEXT,
+    director TEXT
+ );
+
+CREATE TABLE cast (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id TEXT,
+    performer_id TEXT,
+    role TEXT
+
+);
+
+
+CREATE TABLE performers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT
+
+);
 
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+
+INSERT INTO movies (
+    "Batman Begins",
+    "2005",
+    "PG-13",
+    "Christopher Nolan",
+);
+
+
+INSERT INTO movies (
+    "The Dark Knight",
+    "2008",
+    "PG-13",
+    "Christopher Nolan",
+);
+
+INSERT INTO movies (
+    "The Dark Knight Rises",
+    "2008",
+    "PG-13",
+    "Christopher Nolan",
+);
+
+INSERT INTO performers (
+    "Christian Bale"
+);
+
+INSERT INTO performers (
+    "Michael Caine"
+);
+
+INSERT INTO performers (
+    "Liam Neeson"
+);
+
+INSERT INTO performers (
+    "Katie Holmes"
+);
+
+INSERT INTO performers (
+    "Gary Oldman"
+);
+
+INSERT INTO performers (
+    "Heath Ledger"
+);
+
+INSERT INTO performers (
+    "Aaron Eckhart"
+);
+
+INSERT INTO performers (
+    "Maggie Gyllenhaal"
+);
+
+INSERT INTO performers (
+    "Tom Hardy"
+);
+
+INSERT INTO performers (
+    "Joseph Gordon-Levitt"
+);
+
+INSERT INTO performers (
+    "Anne Hathaway"
+);
+
+INSERT INTO cast (
+    "1",
+    "1",
+    "Bruce Wayne"
+);
+
+INSERT INTO cast (
+    "1",
+    "2",
+    "Alfred"
+);
+
+INSERT INTO cast (
+    "1",
+    "3",
+    "Ra's Al Ghul"
+);
+
+INSERT INTO cast (
+    "1",
+    "4",
+    "Rachel Dawes"
+);
+
+INSERT INTO cast (
+    "1",
+    "5",
+    "Commissioner Gordon"
+);
+
+INSERT INTO cast (
+    "2",
+    "1",
+    "Bruce Wayne"
+);
+
+INSERT INTO cast (
+    "2",
+    "6",
+    "Joker"
+);
+
+INSERT INTO cast (
+    "2",
+    "7",
+    "Harvey Dent"
+);
+
+INSERT INTO cast (
+    "2",
+    "2",
+    "Alfred"
+);
+
+INSERT INTO cast (
+    "2",
+    "8",
+    "Rachel Dawes"
+);
+
+INSERT INTO cast (
+    "3",
+    "1",
+    "Bruce Wayne"
+);
+
+INSERT INTO cast (
+    "3",
+    "5",
+    "Commissioner Gordon"
+);
+
+INSERT INTO cast (
+    "3",
+    "9",
+    "Bane"
+);
+
+INSERT INTO cast (
+    "3",
+    "10",
+    "John Blake"
+);
+
+INSERT INTO cast (
+    "3",
+    "11",
+    "Selina Kyle"
+);
 
 -- Prints a header for the movies output
 .print "Movies"
