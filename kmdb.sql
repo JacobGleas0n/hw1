@@ -70,8 +70,8 @@
 -- TODO!
 
 DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS cast;
 DROP TABLE IF EXISTS performers;
+DROP TABLE IF EXISTS cast;
 
 -- Create new tables, according to your domain model
 -- TODO!
@@ -84,17 +84,16 @@ CREATE TABLE movies (
     director TEXT
  );
 
-CREATE TABLE cast (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    movie_id TEXT,
-    performer_id TEXT,
-    role TEXT
-);
-
 CREATE TABLE performers (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT
+);
 
+CREATE TABLE cast (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    movie_id INTEGER,
+    performer_id INTEGER,
+    role TEXT
 );
 
 -- Insert data into your database that reflects the sample data shown above
@@ -113,155 +112,303 @@ VALUES (
     "2005",
     "PG-13",
     "Christopher Nolan"
-)
+);
 
 INSERT INTO movies (
+    title,
+    release_date,
+    rating,
+    director
+)
+
+VALUES (
     "The Dark Knight",
     "2008",
     "PG-13",
     "Christopher Nolan"
-)
+);
 
 INSERT INTO movies (
+    title,
+    release_date,
+    rating,
+    director
+)
+
+VALUES (
     "The Dark Knight Rises",
     "2008",
     "PG-13",
     "Christopher Nolan"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Christian Bale"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Michael Caine"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Liam Neeson"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Katie Holmes"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Gary Oldman"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Heath Ledger"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Aaron Eckhart"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Maggie Gyllenhaal"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Tom Hardy"
-)
+);
 
 INSERT INTO performers (
+    name
+)
+
+VALUES performers (
     "Joseph Gordon-Levitt"
-)
+);
 
 INSERT INTO performers (
-    "Anne Hathaway"
+    name
 )
+
+VALUES performers (
+    "Anne Hathaway"
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES (
     "1",
     "1",
     "Bruce Wayne"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES (
     "1",
     "2",
     "Alfred"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "1",
     "3",
     "Ra's Al Ghul"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "1",
     "4",
     "Rachel Dawes"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "1",
     "5",
     "Commissioner Gordon"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "2",
     "1",
     "Bruce Wayne"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "2",
     "6",
     "Joker"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "2",
     "7",
     "Harvey Dent"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "2",
     "2",
     "Alfred"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "2",
     "8",
     "Rachel Dawes"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "3",
     "1",
     "Bruce Wayne"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "3",
     "5",
     "Commissioner Gordon"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "3",
     "9",
     "Bane"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "3",
     "10",
     "John Blake"
-)
+);
 
 INSERT INTO cast (
+    movie_id, 
+    performer_id,
+    role
+)
+
+VALUES cast (
     "3",
     "11",
     "Selina Kyle"
-)
+);
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -274,7 +421,7 @@ INSERT INTO cast (
 SELECT title, release_date, rating, director
 FROM movies
 GROUP BY title
-ORDER BY year;
+ORDER BY release_date;
 
 -- Prints a header for the cast output
 .print ""
@@ -286,8 +433,8 @@ ORDER BY year;
 -- The SQL statement for the cast output
 -- TODO!
 
-SELECT movies.title, performers.name, cast.role 
+SELECT movies.title, performers.name, role 
 FROM cast
-INNER JOIN movies ON cast.movie_id = movies.id 
-INNER JOIN cast ON performers.id = cast.performer_id
+INNER JOIN movies ON movies.id = cast.movie_id 
+INNER JOIN performers ON performers.id = cast.performer_id
 GROUP BY movies.title;
