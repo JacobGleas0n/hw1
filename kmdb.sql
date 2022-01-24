@@ -81,7 +81,7 @@ CREATE TABLE movies (
     title TEXT,
     release_date TEXT,
     rating TEXT,
-    director TEXT
+    performer_id TEXT
  );
 
 CREATE TABLE performers (
@@ -104,42 +104,42 @@ INSERT INTO movies (
     title,
     release_date,
     rating,
-    director
+    performer_id
 )
 
 VALUES (
     "Batman Begins",
     "2005",
     "PG-13",
-    "Christopher Nolan"
+    12
 );
 
 INSERT INTO movies (
     title,
     release_date,
     rating,
-    director
+    performer_id
 )
 
 VALUES (
     "The Dark Knight",
     "2008",
     "PG-13",
-    "Christopher Nolan"
+    12
 );
 
 INSERT INTO movies (
     title,
     release_date,
     rating,
-    director
+    performer_id
 )
 
 VALUES (
     "The Dark Knight Rises",
     "2008",
     "PG-13",
-    "Christopher Nolan"
+    12
 );
 
 INSERT INTO performers (
@@ -228,6 +228,14 @@ INSERT INTO performers (
 
 VALUES (
     "Anne Hathaway"
+);
+
+INSERT INTO performers (
+    name
+)
+
+VALUES (
+    "Christopher Nolan"
 );
 
 INSERT INTO top_cast (
@@ -418,8 +426,9 @@ VALUES (
 -- The SQL statement for the movies output
 -- TODO!
 
-SELECT title, release_date, rating, director
+SELECT title, release_date, rating, performers.name
 FROM movies
+    INNER JOIN performers ON performers.id = movies.performer_id
 GROUP BY title
 ORDER BY release_date;
 
