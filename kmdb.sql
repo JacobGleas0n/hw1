@@ -137,7 +137,7 @@ INSERT INTO movies (
 
 VALUES (
     "The Dark Knight Rises",
-    "2008",
+    "2012",
     "PG-13",
     12
 );
